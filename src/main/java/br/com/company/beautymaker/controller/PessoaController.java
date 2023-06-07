@@ -47,7 +47,7 @@ public class PessoaController {
     }
     
     @GetMapping("/")
-    public List<Pessoa> getPessoas() {
+    public List<Pessoa> getListPessoas() {
     	return pessoaRepository.findAll();
     }
     

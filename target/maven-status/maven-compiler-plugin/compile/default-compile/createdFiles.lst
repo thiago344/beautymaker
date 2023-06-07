@@ -1,0 +1,11 @@
+br\com\company\beautymaker\controller\UserController.class
+br\com\company\beautymaker\model\Serviços.class
+br\com\company\beautymaker\BeautymakerApplication.class
+br\com\company\beautymaker\model\Pessoa.class
+br\com\company\beautymaker\controller\PessoaController.class
+br\com\company\beautymaker\repository\PessoaRepository.class
+br\com\company\beautymaker\model\Funcionario.class
+br\com\company\beautymaker\repository\ServiçosRepository.class
+br\com\company\beautymaker\model\Cliente.class
+br\com\company\beautymaker\repository\ClienteRepository.class
+br\com\company\beautymaker\controller\ServiçosController.class
