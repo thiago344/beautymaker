@@ -3,19 +3,19 @@ package br.com.company.beautymaker.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "serviços")
-public class Serviços {
+@Document(collection = "servicos")
+public class Servicos {
 
     @Id
     private int id;
     private String nome;
 
-    public Serviços(int id, String nome) {
+    public Servicos(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public Serviços() {
+    public Servicos() {
     }
 
     public int getId() {

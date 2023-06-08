@@ -9,6 +9,7 @@ import br.com.company.beautymaker.model.Funcionario;
 import br.com.company.beautymaker.repository.FuncionarioRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -25,6 +26,18 @@ public class FuncionarioController {
         model.addAttribute("funcionario", funcionario);
         return "funcionario";
     }
+    @GetMapping("/{id}")
+	 public String getFuncionario(@PathVariable int id, Model model) {
+	 Optional<Funcionario> optionalFuncionario = Optional.of(funcionarioRepository.findById(id));
+	 if (optionalFuncionario.isPresent()) {
+	  Funcionario funcionario = optionalFuncionario.get();
+	  model.addAttribute("funcionario", funcionario);
+	 return "funcionario";
+	 } else {
+	 model.addAttribute("error", "Funcionario não encontrado");
+	 return "error";
+	 }
+	 }
 
     @GetMapping("/listar")
     public String listarFuncionarios(Model model) {
@@ -33,24 +46,30 @@ public class FuncionarioController {
         return "listaFuncionarios";
     }
 
-    @GetMapping("/{id}")
-    public String detalhesFuncionario(@PathVariable int id, Model model) {
-        Funcionario funcionario = funcionarioRepository.findById(id);
-        model.addAttribute("funcionario", funcionario);
-        return "detalhesFuncionario";
+    @GetMapping("/{id}/detalhar")
+    public String detalheFuncionario(@PathVariable int id, Model model) {
+        Optional<Funcionario> optionalFuncionario = Optional.of(funcionarioRepository.findById(id));
+        if (optionalFuncionario.isPresent()) {
+            Funcionario funcionario = optionalFuncionario.get();
+            model.addAttribute("funcionario", funcionario);
+            return "detalheFuncionario";
+        } else {
+            model.addAttribute("error", "Funcionario não encontrado");
+            return "error";
+        }
     }
 
+
     @PostMapping("/")
-    public String saveFuncionario(@ModelAttribute Funcionario funcionario) {
-        funcionarioRepository.save(funcionario);
-        return "redirect:/funcionario/";
+    public Funcionario saveFuncionario(@RequestBody Funcionario funcionario) {
+    	 return funcionarioRepository.save(funcionario);
+       
     }
 
     @GetMapping("/{id}/editar")
-    public String editFuncionario(@PathVariable int id, Model model) {
-        Funcionario funcionario = funcionarioRepository.findById(id);
-        model.addAttribute("funcionario", funcionario);
-        return "editarFuncionario";
+    public Funcionario editFuncionario(@RequestBody Funcionario funcionario,@PathVariable int id) {
+    	return funcionario = funcionarioRepository.findById(id);
+        
     }
 
     @PostMapping("/{id}/editar")

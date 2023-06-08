@@ -16,10 +16,6 @@ public class Pessoa {
 
     public Pessoa() {
     }
-    public void addAttribute(String string, Pessoa pessoa) {
-		
-		
-	}
 
     public Pessoa(String nome, String sexo, String endereco, String email, Date dataNascimento, String cpf, String telefone) {
         this.nome = nome;
