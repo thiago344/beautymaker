@@ -12,14 +12,14 @@ import br.com.company.beautymaker.model.Agenda;
 import br.com.company.beautymaker.model.Cliente;
 import br.com.company.beautymaker.model.Funcionario;
 import br.com.company.beautymaker.model.Servicos;
-import br.com.company.beautymaker.repository.AgendaRepository;
+import br.com.company.beautymaker.service.AgendaService;
 
 @Controller
 @RequestMapping("/agenda")
 public class AgendaController {
 
     @Autowired
-    private AgendaRepository agendaRepository;
+    private AgendaService agendaService;
 
     @GetMapping("/")
     public String agenda(@RequestParam("id") int id,
@@ -40,7 +40,7 @@ public class AgendaController {
 
     @GetMapping("/{id}")
     public String getAgenda(@PathVariable int id, Model model) {
-        Optional<Agenda> optionalAgenda = Optional.of(agendaRepository.findById(id));
+        Optional<Agenda> optionalAgenda = agendaService.findById(id);
         if (optionalAgenda.isPresent()) {
             Agenda agenda = optionalAgenda.get();
             model.addAttribute("agenda", agenda);
@@ -53,13 +53,13 @@ public class AgendaController {
 
     @PostMapping("/")
     public String saveAgenda(@RequestBody Agenda agenda) {
-        agendaRepository.save(agenda);
+        agendaService.save(agenda);
         return "redirect:/agenda/";
     }
 
     @GetMapping("/{id}/editar")
     public String editAgenda(@PathVariable int id, Model model) {
-        Optional<Agenda> optionalAgenda = Optional.of(agendaRepository.findById(id));
+        Optional<Agenda> optionalAgenda = agendaService.findById(id);
         if (optionalAgenda.isPresent()) {
             Agenda agenda = optionalAgenda.get();
             model.addAttribute("agenda", agenda);
@@ -73,13 +73,13 @@ public class AgendaController {
     @PostMapping("/{id}/editar")
     public String saveEdicaoAgenda(@PathVariable int id, @ModelAttribute Agenda agenda) {
         agenda.setId(id);
-        agendaRepository.save(agenda);
+        agendaService.save(agenda);
         return "redirect:/agenda/";
     }
 
     @PostMapping("/{id}/excluir")
     public String deleteAgenda(@PathVariable int id) {
-        agendaRepository.deleteById(id);
+        agendaService.deleteById(id);
         return "redirect:/agenda/";
     }
 }

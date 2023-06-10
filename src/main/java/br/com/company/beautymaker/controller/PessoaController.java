@@ -1,7 +1,7 @@
 package br.com.company.beautymaker.controller;
 
 import br.com.company.beautymaker.model.Pessoa;
-import br.com.company.beautymaker.repository.PessoaRepository;
+import br.com.company.beautymaker.service.PessoaService;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PessoaController {
 	
 	@Autowired
-    private PessoaRepository pessoaRepository;
+    private PessoaService pessoaService;
 
     @GetMapping("/pessoa")
     public String pessoa(@RequestParam("nome") String nome,
@@ -48,12 +48,12 @@ public class PessoaController {
     
     @GetMapping("/")
     public List<Pessoa> getListPessoas() {
-    	return pessoaRepository.findAll();
+    	return pessoaService.getAllPessoas();
     }
     
     @PostMapping("/")
     public Pessoa savePessoa(@RequestBody Pessoa pessoa) {
-    	return pessoaRepository.save(pessoa);
+    	return pessoaService.savePessoa(pessoa);
     	
     }
     

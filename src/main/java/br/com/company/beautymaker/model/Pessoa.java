@@ -8,7 +8,6 @@ public class Pessoa {
     private String nome;
     private String sexo;
     private String endereco;
-    private String email;
     private Date dataNascimento;
     @Id
     private String cpf;
@@ -17,11 +16,10 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String sexo, String endereco, String email, Date dataNascimento, String cpf, String telefone) {
+    public Pessoa(String nome, String sexo, String endereco, Date dataNascimento, String cpf, String telefone) {
         this.nome = nome;
         this.sexo = sexo;
         this.endereco = endereco;
-        this.email = email;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -49,14 +47,6 @@ public class Pessoa {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Date getDataNascimento() {

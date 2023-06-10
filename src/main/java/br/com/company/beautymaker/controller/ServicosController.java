@@ -2,7 +2,7 @@ package br.com.company.beautymaker.controller;
 
 
 import br.com.company.beautymaker.model.Servicos;
-import br.com.company.beautymaker.repository.ServicosRepository;
+import br.com.company.beautymaker.service.ServicosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ import java.util.List;
 public class ServicosController {
 
     @Autowired
-    private ServicosRepository servicosRepository;
+    private ServicosService servicosService;
 
     @GetMapping("/servicos")
     public String servicos(@RequestParam("id") int id,
@@ -32,11 +32,11 @@ public class ServicosController {
 
     @GetMapping("/")
     public List<Servicos> getListServicos() {
-        return servicosRepository.findAll();
+        return servicosService.findAll();
     }
 
     @PostMapping("/")
     public Servicos saveServicos(@ModelAttribute Servicos servicos) {
-        return servicosRepository.save(servicos);
+        return servicosService.save(servicos);
     }
 }

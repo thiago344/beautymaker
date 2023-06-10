@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "servicos")
 public class Servicos {
-
+//tipo, descrição, valor, hashmap
     @Id
     private int id;
     private String nome;
