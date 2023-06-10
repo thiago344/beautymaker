@@ -86,6 +86,5 @@ public class ClienteService {
             if (clienteRepository.findByEmail(cliente.getEmail()) != null) {
                 throw new IllegalArgumentException("Email já está em uso");
             }
-
     }
 }

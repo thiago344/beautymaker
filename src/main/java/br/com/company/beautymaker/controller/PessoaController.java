@@ -26,7 +26,6 @@ public class PessoaController {
     public String pessoa(@RequestParam("nome") String nome,
                          @RequestParam("sexo") String sexo,
                          @RequestParam("endereco") String endereco,
-                         @RequestParam("email") String email,
                          @RequestParam("dataNascimento") String dataNascimento,
                          @RequestParam("cpf") String cpf,
                          @RequestParam("telefone") String telefone,
@@ -36,7 +35,6 @@ public class PessoaController {
         pessoa.setNome(nome);
         pessoa.setSexo(sexo);
         pessoa.setEndereco(endereco);
-        pessoa.setEmail(email);
         pessoa.setDataNascimento(converterData(dataNascimento));
         pessoa.setCpf(cpf);
         pessoa.setTelefone(telefone);
