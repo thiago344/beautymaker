@@ -15,7 +15,7 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     public Cliente findByIdCliente(int id) {
-        Optional<Cliente> optionalCliente = Optional.of(clienteRepository.findById(id));
+        Optional<Cliente> optionalCliente = Optional.of(clienteRepository.findById(Integer.toString(id))).get();
         return optionalCliente.orElse(null);
     }
 
@@ -28,7 +28,7 @@ public class ClienteService {
     }
 
     public void deleteByIdCliente(int id) {
-        clienteRepository.deleteById(id);
+        clienteRepository.deleteById(Integer.toString(id));
     }
 
         public Cliente autenticarUsuario(String email, String senha) {
@@ -87,4 +87,9 @@ public class ClienteService {
                 throw new IllegalArgumentException("Email já está em uso");
             }
     }
+
+		public Cliente save(Cliente cliente) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 }

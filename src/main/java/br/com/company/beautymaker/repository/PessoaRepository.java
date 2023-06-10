@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import br.com.company.beautymaker.model.Pessoa;
 
-@Repository
 public interface PessoaRepository extends MongoRepository<Pessoa, String>{
 
 }

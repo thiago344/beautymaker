@@ -48,13 +48,13 @@ public class ClienteController {
 	        model.addAttribute("cliente", cliente);
 	        return "detalhesCliente";
 	    }
+	// @GetMapping("/listar")
+	   // public String listarCliente(Model model) {
+	  //      List<Cliente> cliente = clienteService.findAllCliente();
+	    //    model.addAttribute("cliente", cliente);
+	      //  return "listarCliente";
+	   // }
 	 @GetMapping("/listar")
-	    public String listarCliente(Model model) {
-	        List<Cliente> cliente = clienteService.findAllCliente();
-	        model.addAttribute("cliente", cliente);
-	        return "listarCliente";
-	    }
-	 @GetMapping("/")
 	    public List<Cliente> getListCliente() {
 	    	return clienteService.findAllCliente();
 	    }

@@ -5,4 +5,6 @@ import br.com.company.beautymaker.model.Funcionario;
 
 public interface FuncionarioRepository extends MongoRepository<Funcionario, String>{
 
+	Funcionario findByEmail(String email);
+
 }
