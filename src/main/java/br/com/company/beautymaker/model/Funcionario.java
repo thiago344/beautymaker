@@ -3,7 +3,9 @@ package br.com.company.beautymaker.model;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "funcionario")
 public class Funcionario extends Pessoa {
 	@Id
     private int id;

@@ -1,6 +1,8 @@
 package br.com.company.beautymaker.model;
 import java.time.LocalDateTime;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "agenda")
 public class Agenda {
     private int id;
     private Funcionario funcionario;

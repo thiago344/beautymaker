@@ -3,13 +3,14 @@ package br.com.company.beautymaker.model;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "pessoa")
 public class Pessoa {
     private String nome;
     private String sexo;
     private String endereco;
     private Date dataNascimento;
-    @Id
     private String cpf;
     private String telefone;
 

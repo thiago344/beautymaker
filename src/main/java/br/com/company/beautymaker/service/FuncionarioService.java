@@ -14,8 +14,10 @@ public class FuncionarioService {
     private FuncionarioRepository funcionarioRepository;
 
     public Funcionario findById(int id) {
-        Optional<Funcionario> optionalFuncionario = Optional.of(funcionarioRepository.findById(id));
-        return optionalFuncionario.orElse(null);
+
+        return funcionarioRepository.findById(Integer.toString(id)).get();
+
+
     }
 
     public List<Funcionario> findAll() {
@@ -27,6 +29,6 @@ public class FuncionarioService {
     }
 
     public void deleteById(int id) {
-        funcionarioRepository.deleteById(id);
+        funcionarioRepository.deleteById(Integer.toString(id));
     }
 }

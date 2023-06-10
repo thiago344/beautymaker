@@ -4,9 +4,5 @@ import br.com.company.beautymaker.model.Cliente;
 
 
 public interface ClienteRepository extends MongoRepository<Cliente, String> {
-	
-	Cliente findById(int id);
-	Cliente findByEmail(String email);
-	void saveCliente(Cliente cliente);
-    void deleteById(int id);
+
 }
