@@ -2,6 +2,7 @@ package br.com.company.beautymaker.service;
 
 import br.com.company.beautymaker.model.Cliente;
 import br.com.company.beautymaker.repository.ClienteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +50,7 @@ public class ClienteService {
             return cliente; 
         }
         
-        public void validarCadastro(Cliente cliente) {
+        public Cliente validarCadastro(Cliente cliente) {
 
             if (cliente.getNome() == null || cliente.getNome().isEmpty()) {
                 throw new IllegalArgumentException("Nome é obrigatório");
@@ -86,10 +87,7 @@ public class ClienteService {
             if (clienteRepository.findByEmail(cliente.getEmail()) != null) {
                 throw new IllegalArgumentException("Email já está em uso");
             }
+            return clienteRepository.save(cliente);
     }
 
-		public Cliente save(Cliente cliente) {
-			// TODO Auto-generated method stub
-			return null;
-		}
 }
