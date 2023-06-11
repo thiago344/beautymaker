@@ -82,11 +82,13 @@ public class AgendaController {
         agendaService.deleteById(id);
         return "redirect:/agenda/";
     }
-    @PostMapping("/verificar-agendamento")
-    @ResponseBody
-    public boolean verificarAgendamento(@RequestBody String dataHora) {
-    	System.out.println(dataHora);
-    	return true;
-       // return agendaService.verificarDataHoraAgendada(dataHora);
+    @GetMapping("/verificar-agendamento")
+    public boolean verificarAgendamento(@RequestParam("id") int id,
+        @RequestParam("funcionario") int funcionario,
+        @RequestParam("cliente") int cliente,
+        @RequestParam("servicos") int servicos,
+        @RequestParam("dataHora") String dataHora) {
+
+        return true;
     }
 }

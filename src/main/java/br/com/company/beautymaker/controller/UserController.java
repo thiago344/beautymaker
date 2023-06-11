@@ -10,16 +10,11 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    //@Autowired
-    //private UserRepository userRepository;
 
-   // @GetMapping("/")
-    //public List<User> getUsers() {
-        //return userRepository.findAll();
-    //}
-
-    //@PostMapping("/")
-   //public User createUser(@RequestBody User user) {
-        //return userRepository.save(user);
+    @GetMapping("/")
+    public List<Object> getUsers() {
+        return null;
     }
-//}
+
+
+}
