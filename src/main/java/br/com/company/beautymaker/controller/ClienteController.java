@@ -88,6 +88,8 @@ public class ClienteController {
 	public String autenticarCliente(String email, String senha, Model model) {
 	    Cliente cliente = clienteService.autenticarUsuario(email, senha);
 	    if (cliente != null) {
+	    	//String clienteId = String.valueOf(cliente.getId());
+
 	        model.addAttribute("cliente", cliente);
 	        return "cliente";
 	    } else {
@@ -95,6 +97,19 @@ public class ClienteController {
 	        return "error";
 	    }
 	}
+
+	//@GetMapping("/autenticar")
+	//public String autenticarCliente(String email, String senha, Model model) {
+	  //  Cliente cliente = clienteService.autenticarUsuario(email, senha);
+	    //if (cliente != null) {
+	    	//cliente.getId();
+	        //model.addAttribute("cliente", cliente);
+	        //return "cliente";
+	    //} else {
+	      //  model.addAttribute("error", "Email ou senha inválidos");
+	        //return "error";
+	   // }
+	//}
 
        
 	@PostMapping("/cadastrar")
