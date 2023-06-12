@@ -40,10 +40,10 @@ public class ClienteService {
             Cliente cliente = clienteRepository.findByEmail(email);
 
         if (cliente == null) {
-                throw new RuntimeException("Usuário ou Senha incorreto");
+                throw new RuntimeException("Usuário inexistente");
             }
 
-        if (!cliente.getSenha().equals(senha)) {
+        if (!cliente.getEmail().equals(email) && !cliente.getSenha().equals(senha)) {
                 throw new RuntimeException("Usuário ou Senha incorreto");
             }
 

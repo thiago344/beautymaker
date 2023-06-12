@@ -1,9 +1,11 @@
 package br.com.company.beautymaker.controller;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -82,13 +84,39 @@ public class AgendaController {
         agendaService.deleteById(id);
         return "redirect:/agenda/";
     }
-    @GetMapping("/verificar-agendamento")
-    public boolean verificarAgendamento(@RequestParam("id") int id,
-        @RequestParam("funcionario") int funcionario,
-        @RequestParam("cliente") int cliente,
-        @RequestParam("servicos") int servicos,
-        @RequestParam("dataHora") String dataHora) {
-
-        return true;
+    
+    @PostMapping("/verificar-agendamento")
+    @ResponseBody
+    public boolean verificarAgendamento(@RequestBody LocalDateTime dataHora) {
+    	System.out.println(dataHora);
+ // 	return true;
+        return agendaService.verificarDataHoraAgendada(dataHora);
     }
+
+    @GetMapping("/verificar-agendamento")
+    public ResponseEntity<Boolean> verificarAgendamento(@RequestParam("dataHora") String dataHora) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dataHoraAux = LocalDateTime.parse(dataHora, formatter);
+
+        boolean agendamentoExistente = agendaService.verificarDataHoraAgendada(dataHoraAux);
+        return ResponseEntity.ok(agendamentoExistente);
+    }
+
+    //@GetMapping("/verificar-agendamento")
+    //public boolean verificarAgendamento(@RequestParam("dataHora") String dataHora) {
+       // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // Define o padrão da string
+       // LocalDateTime dataHoraAux = LocalDateTime.parse(dataHora, formatter); // Converte a string para LocalDateTime
+
+
+      //  return agendaService.verificarDataHoraAgendada(dataHoraAux);
+   // }
+    //@GetMapping("/verificar-agendamento")
+    //public boolean verificarAgendamento(@RequestParam("id") int id,
+        //@RequestParam("funcionario") int funcionario,
+        //@RequestParam("cliente") int cliente,
+        //@RequestParam("servicos") int servicos,
+        //@RequestParam("dataHora") String dataHora) {
+
+        //return true;
+    //}
 }

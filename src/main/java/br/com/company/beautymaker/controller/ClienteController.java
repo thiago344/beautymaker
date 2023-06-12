@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,17 +84,27 @@ public class ClienteController {
         return "redirect:/cliente/";
 		
 	}
-	@PostMapping("/autenticar")
-    public String autenticarCliente(@RequestParam("email") String email, 
-    		                        @RequestParam("senha") String senha,
-    		                        Model model) {
-        Cliente cliente = clienteService.autenticarUsuario(email, senha);
-        if (cliente != null) {
-            model.addAttribute("cliente", cliente);
-            return "cliente";
-        } else {
-            model.addAttribute("error", "Email ou senha inválidos");
-            return "error";
-        }
-}
+	@GetMapping("/autenticar")
+	public String autenticarCliente(String email, String senha, Model model) {
+	    Cliente cliente = clienteService.autenticarUsuario(email, senha);
+	    if (cliente != null) {
+	        model.addAttribute("cliente", cliente);
+	        return "cliente";
+	    } else {
+	        model.addAttribute("error", "Email ou senha inválidos");
+	        return "error";
+	    }
+	}
+
+       
+	@PostMapping("/cadastrar")
+	public ResponseEntity<?> validarCadastro(@RequestBody Cliente cliente) {
+	    try {
+	        Cliente clienteSalvo = clienteService.validarCadastro(cliente);
+	        return ResponseEntity.ok(clienteSalvo);
+	    } catch (IllegalArgumentException e) {
+	        return ResponseEntity.badRequest().body(e.getMessage());
+	    }
+	}
+
 }
